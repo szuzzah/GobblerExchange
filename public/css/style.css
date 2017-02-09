@@ -1,0 +1,334 @@
+/* START CLICKABLES */
+#edit_box {
+	width: 20px;
+	height: 20px;
+	float: right;
+}
+
+#delete_box {
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin-right:20px;
+}
+
+#up_vote {
+	width: 20px;
+	height: 20px;
+	margin: auto;
+}
+
+#down_vote {
+	width: 20px;
+	height: 20px;
+	margin: auto;
+}
+
+#newforumpost {
+    background-color: #35659c;
+    float: right;
+    color: white;
+    font-family: "Helvetica";
+    padding: 5px;
+    font-size: 10px;
+	border: solid 1px #D1D1D1;
+    margin: 5px 205px 5px 5px;
+}
+
+#comments {
+	text-align: left;
+	width: 80px;
+	font-family: "Helvetica";
+	font-size: .83em;
+	color: white;
+    font-weight: bold;
+}
+
+#comments:hover, #comments:focus {
+    color: #35659c;
+    background: #D1D1D1;
+}
+/* END CLICKABLES */
+
+/* START TABLE ELEMENTS */
+th#t1, td#t1 {
+    border: 1px solid #D1D1D1;
+    padding: 5px;
+    min-width: 30px;
+}
+
+table#t1 {
+    border: 2px solid #35989c;
+    margin-left: 5px;
+    float: left;
+	width: 590px;
+	background-color: #9c3935;
+	border-collapse: collapse;
+    text-align: center;
+	font-family: "Helvetica";
+	font-size: 14px;
+	color: white;
+	vertical-alignment: middle;
+}
+
+table#t2 {
+    margin-left: 5px;
+    float: left;
+	width: 500px;
+	background-color: #9c3935;
+	border-collapse: collapse;
+    text-align: left;
+	font-family: "Helvetica";
+	font-size: 14px;
+	color: white;
+}
+/* END TABLE ELEMENTS */
+
+/* START HEADERS */
+h1 {
+	text-align: center;
+	font-family: "Helvetica";
+	font: 24pt;
+	color: #9c3935;
+}
+
+h2 {
+	text-align: left;
+	font-family: "Helvetica";
+	font: 18pt;
+	color: white;
+	display: inline;
+}
+
+h3 {
+	text-align: center;
+	font-family: "Helvetica";
+	font: 16pt;
+	color: white;
+	margin: 5;
+}
+
+h5 {
+	text-align: left;
+	font-family: "Helvetica";
+	font: 10pt;
+	color: white;
+	display: inline;
+}
+/* END HEADERS */
+
+
+/* START TAB CODE */
+.tabrow {
+    text-align: center;
+    list-style: none;
+    margin: 0px 0 20px;
+    padding: 0;
+    line-height: 35px;
+    height: 37px;
+    overflow: hidden;
+    font-family: "Helvetica";
+    font-size: 12px;
+    color: #35989c;
+    font-weight: bold;
+    position: relative;
+}
+
+.tabrow li {
+    border: 1px solid #AAA;
+    background: #D1D1D1;
+    background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    display: inline-block;
+    position:relative;
+    z-index: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+    text-shadow: 0 1px #FFF;
+    margin: 0 -5px;
+    padding: 0 30px;
+}
+
+.tabrow a {
+    color: #555;
+    text-decoration: none;
+}
+
+.tabrow li.selected {
+    background: #FFF;
+    z-index: 2;
+    border-top-color: #FFF;
+    font-weight: 800;
+}
+
+.tabrow:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-top: 1px solid #AAA;
+    z-index: 1;
+}
+
+.tabrow li:before,
+.tabrow li:after {
+    border: 1px solid #AAA;
+    position: absolute;
+    top: -1px;
+    width: 6px;
+    height: 6px;
+    content: "";
+}
+
+.tabrow li:before {
+    left: -7px;
+    border-top-right-radius: 6px;
+    border-width: 1px 1px 0px 0px;
+    box-shadow: 2px 0px 0 #ECECEC;
+}
+
+.tabrow li:after {
+    right: -7px;
+    border-top-left-radius: 6px;
+    border-width: 1px 0px 0px 1px;
+    box-shadow: -2px 0px 0 #ECECEC;
+}
+
+.tabrow li.selected:before {
+    box-shadow: 2px 0px 0 #FFF;
+}
+
+.tabrow li.selected:after {
+    box-shadow: -2px 0px 0 #FFF;
+}
+/* END TAB CODE */
+
+/* START DROPDOWN BUTTON CODE */
+/* Dropdown Button */
+.dropbtn {
+    background-color: #35659c;
+    float: left;
+    color: white;
+    font-family: "Helvetica";
+    padding: 5px;
+    font-size: 10px;
+	border: solid 1px #D1D1D1;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #D1D1D1;
+    color: 9c3935;
+	border: solid 1px #9c3935;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 5px;
+    font-size: 10px;
+    font-family: "Helvetica";
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #D1D1D1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+/* END DROPDOWN BUTTON CODE */
+
+/* START ELEMENT HOLDERS */
+body {
+	background: #35989c;
+}
+
+#main {
+	width: 1000px;
+	height: 1000px;
+	background: #FFF;
+	margin: 25px auto;
+	border: solid 2px #D1D1D1;
+}
+
+#cal_box {
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+
+#chat_box {
+	width: 200px;
+	height: 250px;
+	float: right;
+	margin-top:582px;
+}
+
+#flat_rectangle {
+	width: auto;
+	height: 0px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:0px;
+}
+
+#med_rectangle {
+	width: 1000px;
+	height: 10px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:0px;
+	text-align: right;
+	color: white;
+	font-family: "Helvetica";
+	font-size: 10px;
+	margin: 0px auto;
+}
+
+#tall_rectangle {
+	width: auto;
+	height: 55px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:0px;
+}
+
+#signedin {
+	background: #35989c;
+    float: right;
+    color: white;
+    font-family: "Helvetica";
+    padding: 5px;
+    font-size: 10px;
+    border: none;
+	vertical-align: text-top;
+}
+
+#signout {
+    background-color: #35659c;
+    float: right;
+    color: white;
+    font-family: "Helvetica";
+    padding: 5px;
+    font-size: 10px;
+	border: solid 1px #D1D1D1;
+	vertical-align: text-top;
+}
+/* END ELEMENT HOLDERS */
