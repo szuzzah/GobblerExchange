@@ -128,6 +128,7 @@ class Event extends DbObject {
 
     // -------------------------------------------------------------------------
 
+    //**This function can be called from the Calendar class.
     private static function getAllEventsByCalendar($calendarId){
 
         $query = sprintf("SELECT * FROM TABLE WHERE calendarId=%s ",

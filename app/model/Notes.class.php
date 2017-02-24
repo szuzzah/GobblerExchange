@@ -91,6 +91,7 @@ class Notes extends DbObject {
     //--------------------------------------------------------------------------
 
     //get all notes from a specific group
+    //**This function can be called from the Group class.
     public static function getAllNotes($groupId){
         $query = sprintf(" SELECT * FROM %s WHERE groupId=%s ORDER BY timestamp DESC",
             self::DB_TABLE,

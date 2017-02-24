@@ -97,6 +97,7 @@ class ForumPost extends DbObject {
     //-------------------------------------------------------------------------
 
     //get all posts for a group's forum
+    //**This function can be called from the Forum class.
     public static function getAllPosts($forumId){
         $query = sprintf(" SELECT * FROM %s WHERE forumid=%s ORDER BY timestamp DESC",
             self::DB_TABLE,
@@ -116,6 +117,7 @@ class ForumPost extends DbObject {
         }
     }
 
+    //**This function can be called from the Forum class.
     public static function getAllPinnedPosts($forumId){
         $query = sprintf(" SELECT * FROM %s WHERE forumid=%s AND pinned=1 ORDER BY timestamp DESC",
             self::DB_TABLE,

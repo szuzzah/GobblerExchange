@@ -53,6 +53,8 @@ class PollOption extends DbObject {
         return $obj;
     }
 
+    // -------------------------------------------------------------------------
+    //**This function can be called from the Poll class.
     public static function getPollOptions($pollId){
         $query = sprintf(" SELECT * FROM %s WHERE pollId=%s",
             self::DB_TABLE,

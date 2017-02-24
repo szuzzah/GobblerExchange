@@ -106,6 +106,7 @@ class Rating extends DbObject {
 
    // Get the rating given by a user for a specific post
    // Used to show the user they have rated a post
+   //**This function can be called from the ForumPost class.
    public static function loadByUserAndPostId($userId, $postId) {
        $query = sprintf(" SELECT * FROM %s WHERE postId = '%s' AND userId='%s' ",
            self::DB_TABLE,
@@ -125,6 +126,7 @@ class Rating extends DbObject {
 
    // Get the rating given by a user for specific notes
    // Used to show the user they have rated notes
+   //**This function can be called from the Notes class.
    public static function loadByUserAndNotesId($userId, $notesId) {
        $query = sprintf(" SELECT * FROM %s WHERE notesId = '%s' AND userId='%s' ",
            self::DB_TABLE,
@@ -142,6 +144,7 @@ class Rating extends DbObject {
        }
    }
 
+   //**This function can be called from the ForumPost class.
    public function upvoteForumPost($postId, $userId){
        $old_rating = this::loadByUserAndPostId($userId, $postId);
 
@@ -161,6 +164,7 @@ class Rating extends DbObject {
        }
    }
 
+   //**This function can be called from the ForumPost class.
    public function downvoteForumPost($postId, $userId){
        $old_rating = this::loadByUserAndPostId($userId, $postId);
 
@@ -180,6 +184,7 @@ class Rating extends DbObject {
        }
    }
 
+   //**This function can be called from the Notes class.
    public function upvoteNotes($notesId, $userId){
        $old_rating = this::loadByUserAndNotesId($userId, $notesId);
 
@@ -199,6 +204,7 @@ class Rating extends DbObject {
        }
    }
 
+   //**This function can be called from the Notes class.
    public function downvoteNotes($notesId, $userId){
        $old_rating = this::loadByUserAndNotesId($userId, $notesId);
 
@@ -219,6 +225,7 @@ class Rating extends DbObject {
    }
 
    //get a post's overall rating
+   //**This function can be called from the ForumPost class.
    public function getPostRating($postid){
        $ratings = this::getAllRatingsByPost($postid);
        if($ratings == null) return 0;
@@ -231,6 +238,7 @@ class Rating extends DbObject {
    }
 
    //get a notes's overall rating
+   //**This function can be called from the Notes class.
    public function getNotesRating($notesId){
        $ratings = this::getAllRatingsByNotes($notesId);
        if($ratings == null) return 0;
