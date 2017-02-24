@@ -1,25 +1,26 @@
 <?php
 
-class Crn extends DbObject {
-    const DB_TABLE = "crn";
+class PollVote extends DbObject {
+    const DB_TABLE = "pollvote";
 
     //database fields
     protected $id;
+    protected $pollId;
     protected $userId;
-    protected $crnId;
+    
     //constructor
     public function __construct($args = array()){
         $defaultArgs = array(
             'id' => null,
-            'userId' => null,
-            'crnId' => null
+            'pollId' => null,
+            'userId' => null
         );
 
         $args += $defaultArgs;
 
         $this->id = $args['id'];
+        $this->pollId = $args['pollId'];
         $this->userId = $args['userId'];
-        $this->crnId = $args['crnId'];
     }
 
     //save changes to database
@@ -27,8 +28,8 @@ class Crn extends DbObject {
         $db = Db::instance();
 
         $db_properties = array(
-            'userId' => $this->userId,
-            'crnId' => $this->crnId
+            'pollId' => $this->pollId,
+            'userId' => $this->userId
         );
 
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);

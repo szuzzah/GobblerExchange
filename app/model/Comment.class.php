@@ -1,18 +1,17 @@
 <?php
 
-class ForumPost extends DbObject {
-    const DB_TABLE = "forumpost";
+class Comment extends DbObject {
+    const DB_TABLE = "comment";
 
     //database fields
     protected $id;
     protected $userId;
     protected $timestamp;
-    protected $title;
-    protected $description;
-    protected $rating;
-    protected $tag;
-    protected $pinned;          //bool, 0 or 1
-    protected $forumId;
+    protected $comment;
+
+    //one or the other of these must be null
+    protected $postId;
+    protected $notesId;
 
 
     //constructor
@@ -21,12 +20,9 @@ class ForumPost extends DbObject {
             'id' => null,
             'userId' => null,
             'timestamp' => null,
-            'title' => null,
-            'description' => null,
-            'ratingId' => null,
-            'tag' => null,
-            'pinned' => null,
-            'forumId' => null
+            'comment' => null,
+            'postId' => null,
+            'notesId' => null
         );
 
         $args += $defaultArgs;
@@ -34,16 +30,13 @@ class ForumPost extends DbObject {
         $this->id = $args['id'];
         $this->userId = $args['userId'];
         $this->timestamp = $args['timestamp'];
-        $this->title = $args['title'];
-        $this->description = $args['description'];
-        $this->ratingId = $args['ratingId'];
-        $this->tag = $args['tag'];
-        $this->pinned = $args['pinned'];
-        $this->forumId = $args['forumId'];
+        $this->comment = $args['comment'];
+        $this->postId = $args['postId'];
+        $this->notesId = $args['notesId'];
 
     }
 
-    //update (save edits/changes to database)
+    //update (save changes to database)
     public function save(){
         $db = Db::instance();
 
@@ -51,11 +44,9 @@ class ForumPost extends DbObject {
             'userId' => $this->userId,
             'timestamp' => $this->timestamp,
             'title' => $this->title,
-            'description' => $this->description,
-            'ratingId' => $this->ratingId,
-            'tag' => $this->tag,
-            'pinned' => $this->pinned,
-            'forumId' => $this->forumId
+            'comment' => $this->comment,
+            'postId' => $this->postId,
+            'notesId' => $this->notesId
         );
 
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
@@ -78,29 +69,13 @@ class ForumPost extends DbObject {
         if(!$ex) die ('Query failed:' . mysql_error());
     }
 
-    public static function loadPostByUser($userId){
-        return Rating::loadByUserAndPostId($userId, $this->id);
-    }
-    public static function upvote($userId){
-        Rating::upvoteForumPost($this->id, $userId);
-    }
-    public static function downvote($userId){
-        Rating::downvoteForumPost($this->id, $userId);
-    }
-    public static function getRating(){
-        return Rating::getPostRating($this->id);
-    }
-    public static function getComments(){
-        Comment::getAllCommentsByPost($this->id);
-    }
+    // -------------------------------------------------------------------------
 
-    //-------------------------------------------------------------------------
-
-    //get all posts for a group's forum
-    public static function getAllPosts($forumId){
-        $query = sprintf(" SELECT * FROM %s WHERE forumid=%s ORDER BY timestamp DESC",
+    //Get all comments for a particular forum post
+    private static function getAllCommentsByPost($postId){
+        $query = sprintf(" SELECT * FROM %s WHERE postId=%s",
             self::DB_TABLE,
-            $forumId
+            $postId
         );
 
         $db = Db::instance();
@@ -116,10 +91,11 @@ class ForumPost extends DbObject {
         }
     }
 
-    public static function getAllPinnedPosts($forumId){
-        $query = sprintf(" SELECT * FROM %s WHERE forumid=%s AND pinned=1 ORDER BY timestamp DESC",
+    //Get all comments for particular notes
+    private static function getAllCommentsByNotes($notesId){
+        $query = sprintf(" SELECT * FROM %s WHERE notesId=%s",
             self::DB_TABLE,
-            $forumId
+            $notesId
         );
 
         $db = Db::instance();

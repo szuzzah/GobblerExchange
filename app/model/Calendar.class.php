@@ -1,7 +1,7 @@
 <?php
 
-class Forum extends DbObject {
-    const DB_TABLE = "forum";
+class Calendar extends DbObject {
+    const DB_TABLE = "calendar";
 
     //database fields
     protected $id;
@@ -23,12 +23,8 @@ class Forum extends DbObject {
         return $obj;
     }
 
-    public static function getPosts(){
-        return ForumPost::getAllPosts($this->id);
-    }
-
-    public static function getPinnedPosts(){
-        return ForumPost::getAllPinnedPosts($this->id);
+    public static function getEvents(){
+        return Event::getAllEventsByCalendar($this->id);
     }
 }
 ?>

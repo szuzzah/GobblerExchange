@@ -13,10 +13,10 @@ class User extends DbObject {
     public function __construct($args = array()) {
         $defaultArgs = array(
             'id' => null,
-            'name' => '',
-            'username' => '',
-            'email' => '',
-            'password' => ''
+            'name' => null,
+            'username' => null,
+            'email' => null,
+            'password' => null
             );
         $args += $defaultArgs;
         $this->id = $args['id'];
@@ -37,7 +37,8 @@ class User extends DbObject {
         );
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
-    // delete object
+
+    // delete user
     public function delete()
     {
          $db = Db::instance();
@@ -74,5 +75,28 @@ class User extends DbObject {
             $obj = self::loadById($row['id']);
             return ($obj);
         }
-    }  
+    }
+
+    //load by email
+    public static function loadByEmail($email=null) {
+        if($email === null)
+            return null;
+        $query = sprintf(" SELECT id FROM %s WHERE email = '%s' ",
+            self::DB_TABLE,
+            $email
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
+
+    public static function getGroups(){
+        return UserGroup::getAllGroupsOfUser($this->id);
+    }
 }
