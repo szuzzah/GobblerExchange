@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>Gobbler Exchange</title>
-<link rel="stylesheet" type="text/css" href="../../public/css/GobblerExchange.css">
-<!-- <script src="<?= BASE_URL ?>/public/js/jquery-2.2.0.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
+<script src="../../public/js/bootstrap.min.js"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="../../public/css/GobblerExchange.css"> -->
 </head>
 <body>
 
@@ -12,6 +14,58 @@
 	<span class="maroon">Gobbler</span>
 	<span class="orange">Exchange</span>
 </h1>
+
+<br>
+
+<!-- Search bar -->
+<div class="container">
+	<div class="row">
+	  <div class="col-lg-2"></div>
+	  <div class="col-lg-8">
+	    <div class="input-group">
+	      <div class="input-group-btn">
+	        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				CRN <span class="caret"></span>
+			</button>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">CRN</a></li>
+	          <li><a href="#">Group</a></li>
+	          <li><a href="#">Username</a></li>
+			  <li><a href="#">Email</a></li>
+	        </ul>
+	      </div><!-- /btn-group -->
+	      <input type="text" class="form-control" aria-label="...">
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	  <div class="col-lg-2">
+		  <button type="button" class="btn btn-primary" aria-label="Left Align">
+		  	Search
+	      </button>
+	  </div>
+	</div><!-- /.row -->
+</div>
+
+<br>
+
+<!-- Class navigation (forum, calendar, notes, whiteboard) -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+	<div class="col-lg-8">
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="#">Forum</a></li>
+		  <li role="presentation"><a href="#">Calendar</a></li>
+		  <li role="presentation"><a href="#">Notes</a></li>
+		  <li role="presentation"><a href="#">Whiteboard</a></li>
+		</ul>
+	</div>
+	<div class="col-lg-2"></div>
+  </div>
+</div>
+
+
+
+<!--
 
 <div id="topNav">
 	<form id="searchType">
@@ -24,26 +78,18 @@
 	</form>
 	<input id="searchBar" type="text" placeholder="I DEMAND YOU SEARCH HERE" />
 	<input id="searchButton" class="buttons" type="submit" value="Search !!! :D" />
-</div>
+</div> -->
 
-<ul id="breadCrumbs">
+<!-- <ul id="breadCrumbs">
 	<li><a class="active" href="<?= BASE_URL ?>/about/">Forum	</a></li>
 	<li><a href="<?= BASE_URL ?>/settings/">Calendar</a></li>
 	<li><a href="<?= BASE_URL ?>/addclothes/">Whiteboard</a></li>
 	<li><a href="<?= BASE_URL ?>/">Notes</a></li>
-</ul>
-
-
-
-
-
-</form>
-
+</ul> -->
 
 
 <p class="description">
 Hi, I'm just plain text.
 </p>
-
 </body>
 </html>
