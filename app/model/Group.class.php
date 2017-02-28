@@ -6,7 +6,7 @@ class Group extends DbObject {
     //database fields
     protected $id;
     protected $number;      //crn, if a class, null otherwise
-    protected $course_title;
+    protected $group_name;
     protected $calendarId;
     protected $forumId;
     protected $chatId;
@@ -18,7 +18,7 @@ class Group extends DbObject {
         $defaultArgs = array(
             'id' => null,
             'number' => null,
-            'course_title' => null,
+            'group_name' => null,
             'calendarId' => null,
             'forumId' => null,
             'chatId' => null,
@@ -30,7 +30,7 @@ class Group extends DbObject {
 
         $this->id = $args['id'];
         $this->number = $args['number'];
-        $this->course_title = $args['course_title'];
+        $this->group_name = $args['group_name'];
         $this->calendarId = $args['calendarId'];
         $this->forumId = $args['forumId'];
         $this->chatId = $args['chatId'];
@@ -44,7 +44,7 @@ class Group extends DbObject {
 
         $db_properties = array(
             'number' => $this->number,
-            'course_title' => $this->course_title,
+            'group_name' => $this->group_name,
             'calendarId' => $this->calendarId,
             'forumId' => $this->forumId,
             'chatId' => $this->chatId,
@@ -80,9 +80,35 @@ class Group extends DbObject {
         }
     }
 
+    //general search via group_name
+    public static function searchGroupName($group_name, $search_string) {
+        $query = sprintf(" SELECT id FROM %s WHERE",
+            self::DB_TABLE
+            );
+
+        //split search string up by spaces (build query)
+        $array = explode(" ", $search_string);
+        foreach($array as $word) {
+            $query .= " group_name LIKE '" . $word . "'"
+        }
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
+
+    //get all users in this group
     public static function getUsers(){
         return UserGroup::getAllUsersInGroup($this->id);
     }
+
+    //get all notes for this group
     public static function getNotes(){
         return Notes::getAllNotes($this->id);
     }
