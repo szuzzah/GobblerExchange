@@ -1,0 +1,72 @@
+body {
+  /*font-family:  garamond;*/
+  background-color: bisque;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /*background-color: #660000;*/
+  margin-bottom: 2%;
+}
+
+li {
+  float: left;
+}
+
+.maroon{
+  color: #660000;
+}
+
+.orange{
+  color: #ff6600
+}
+
+#searchBar {
+    border-radius: 5px;
+    text-indent: 5px;
+}
+
+#searchButton {
+    background-color: #660000
+}
+
+/*tab refers to the navigation tabs (Forum, Calendar, Notes, Whiteboard)*/
+#tab a{
+    color: white;
+    background-color: #660000
+}
+
+/*turns the navigation tab orange when hovered over*/
+#tab a:hover{
+    color: white;
+    background-color: #ff6600
+}
+
+/*turns the navigation tab orange when clicked*/
+#tab a:focus {
+    background-color: #ff6600;
+}
+
+#signedinas{
+    color: black;
+    margin-top: 35px
+}
+
+#signout{
+    color: white;
+    background-color: #660000;
+    margin-top: 30px
+}
+/*turns the sign out button orange when hovered over*/
+#signout:hover{
+    color: white;
+    background-color: #ff6600;
+    margin-top: 30px
+}
