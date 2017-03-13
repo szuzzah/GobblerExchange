@@ -33,7 +33,7 @@ li {
     text-indent: 5px;
 }
 
-#searchButton {
+#button {
     background-color: #660000;
 }
 
@@ -96,3 +96,11 @@ li {
     background-color: #ff6600;
     margin-top: 30px;
 }
+
+
+/* Change color of dropdown links on hover */
+.data-toggle a:active {
+  background-color: #ff6600
+}
+
+
