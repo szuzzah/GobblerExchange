@@ -5,6 +5,7 @@
         <title>Gobbler Exchange</title>
         <script src="../../public/js/jquery.min.js"></script>
         <script src="../../public/js/bootstrap.min.js"></script>
+        <script src="../../public/js/base.js"></script>
         <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../public/css/base.css">
     </head>
@@ -35,10 +36,10 @@
       <div class="col-lg-8">
         <div class="input-group">
           <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                CRN <span class="caret"></span>
+            <button id = "searchdropdown" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                CRN <span class="caret"><span>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" role = "menu">
               <li><a href="#">CRN</a></li>
               <li><a href="#">Group</a></li>
               <li><a href="#">Username</a></li>
@@ -49,7 +50,7 @@
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
       <div class="col-lg-2">
-          <button id = "searchButton" type="button" class="btn btn-primary" aria-label="Left Align">
+          <button id = "button" type="button" class="btn btn-primary" aria-label="Left Align">
             Search
           </button>
       </div>
@@ -61,7 +62,11 @@
     <!-- Class navigation (forum, calendar, notes, whiteboard) -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+            <button id = "button" type="button" class="btn btn-primary" aria-label="Left Align">
+                New Class
+            </button>
+        </div>
         <div class="col-lg-8">
             <ul class="nav nav-tabs">
               <li id = "tab" role="presentation"><a href="#">Forum</a></li>
