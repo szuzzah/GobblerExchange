@@ -100,3 +100,12 @@ li {
 .data-toggle a:active {
   background-color: #ff6600
 }
+
+#module {
+    width: 100%;
+}
+
+#chat {
+    width:100%;
+    height:300px;
+}
