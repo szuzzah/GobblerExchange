@@ -56,14 +56,12 @@ li {
 #classTabs a{
     color: white;
     background-color: #660000;
-    margin-left: 25px;
 }
 
 /*turns the class tab orange when hovered over*/
 #classTabs a:hover{
     color: white;
     background-color: #ff6600;
-    margin-left: 25px;
 }
 
 /*turns the class tab orange when clicked*/
@@ -102,5 +100,3 @@ li {
 .data-toggle a:active {
   background-color: #ff6600
 }
-
-
