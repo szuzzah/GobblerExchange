@@ -9,7 +9,7 @@ class ForumPost extends DbObject {
     protected $timestamp;
     protected $title;
     protected $description;
-    protected $rating;
+    protected $ratingId;
     protected $tag;
     protected $pinned;          //bool, 0 or 1
     protected $forumId;

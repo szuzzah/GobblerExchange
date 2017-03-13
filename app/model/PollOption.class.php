@@ -7,21 +7,21 @@ class PollOption extends DbObject {
     //database fields
     protected $id;
     protected $pollId;
-    protected $option;  //text of the option
+    protected $poll_option;  //text of the option
 
     //constructor
     public function __construct($args = array()){
         $defaultArgs = array(
             'id' => null,
             'pollId' => null,
-            'option' => null
+            'poll_option' => null
         );
 
         $args += $defaultArgs;
 
         $this->id = $args['id'];
         $this->pollId = $args['pollId'];
-        $this->option = $args['option'];
+        $this->poll_option = $args['poll_option'];
     }
 
     //save changes to database
@@ -30,7 +30,7 @@ class PollOption extends DbObject {
 
         $db_properties = array(
             'pollId' => $this->pollId,
-            'option' => $this->option
+            'poll_option' => $this->poll_option
         );
 
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);

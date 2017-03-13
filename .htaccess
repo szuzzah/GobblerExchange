@@ -1,0 +1,22 @@
+Options -Indexes
+
+RewriteEngine on
+
+# ErrorDocument 404 /app/controller/error.php
+
+# Site
+RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
+RewriteRule ^editpost/?$ app/controller/siteController.php?action=editpost [QSA,L]
+RewriteRule ^editpost_submit/?$ app/controller/siteController.php?action=editpost_submit [QSA,L]
+RewriteRule ^calendar/?$ app/controller/siteController.php?action=calendar [QSA,L]
+RewriteRule ^chat/?$ app/controller/siteController.php?action=chat [QSA,L]
+RewriteRule ^newpost/?$ app/controller/siteController.php?action=newpost [QSA,L]
+RewriteRule ^newpost_submit/?$ app/controller/siteController.php?action=newpost_submit [QSA,L]
+RewriteRule ^deletepost/?$ app/controller/siteController.php?action=deletepost [QSA,L]
+RewriteRule ^upvote/?$ app/controller/siteController.php?action=upvote [QSA,L]
+RewriteRule ^downvote/?$ app/controller/siteController.php?action=downvote [QSA,L]
+RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
+RewriteRule ^signup/?$ app/controller/siteController.php?action=signup [QSA,L]
+RewriteRule ^postlogin/?$ app/controller/siteController.php?action=postlogin [QSA,L]
+RewriteRule ^register/?$ app/controller/siteController.php?action=register [QSA,L]
+RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]

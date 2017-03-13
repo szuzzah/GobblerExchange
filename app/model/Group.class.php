@@ -1,7 +1,7 @@
 <?php
 
 class Group extends DbObject {
-    const DB_TABLE = "group";
+    const DB_TABLE = "groups"; //SQL doesn't like "group" since it's a keyword
 
     //database fields
     protected $id;
