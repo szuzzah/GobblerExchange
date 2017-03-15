@@ -265,7 +265,7 @@ class SiteController {
 		}
 	}
 
-	private function loggedInCheck(){
+	public function loggedInCheck(){
 		//checks if user  is logged in
 		// if not redirects to sign up page
 		if( !isset($_SESSION['username']) || $_SESSION['username'] == '')

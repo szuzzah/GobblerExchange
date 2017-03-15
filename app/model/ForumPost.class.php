@@ -81,9 +81,12 @@ class ForumPost extends DbObject {
     public static function loadPostByUser($userId){
         return Rating::loadByUserAndPostId($userId, $this->id);
     }
+
+    //userid - the userid of the person who is upvoting, not the author
     public static function upvote($userId){
         Rating::upvoteForumPost($this->id, $userId);
     }
+    //userid - the userid of the person who is downvoting, not the author
     public static function downvote($userId){
         Rating::downvoteForumPost($this->id, $userId);
     }
