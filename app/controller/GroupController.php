@@ -38,8 +38,15 @@ class GroupController {
 			exit();
 		}
 
+		//Check if group name is available (doesn't already exist)
 		$groupName = $_POST['group_name'];
-																				//TODO: check if group name exists already
+		if(!Group::checkGroupNameAvailability($groupName)){
+			//unavailable group name
+			$_SESSION['error'] = 'Sorry, that group name is already taken.';	  //TODO make sure SESSION[error] is available in tpl
+			header('Location: '.BASE_URL);											//TODO update location?
+			exit();
+		}
+
 		$type = $_POST['type'];		//class or non-class
 
 		 // if class, number = crn; null otherwise

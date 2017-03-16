@@ -103,6 +103,23 @@ class Group extends DbObject {
         }
     }
 
+    //checks if the group name has already been taken
+    public static function checkGroupNameAvailability($groupname){
+        if($groupname === null)
+            return false;
+        $query = sprintf(" SELECT id FROM %s WHERE group_name = '%s' ",
+            self::DB_TABLE,
+            $groupname
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return true;
+        else {
+            return false;
+        }
+    }
+
     //get all users in this group
     public static function getUsers(){
         return UserGroup::getAllUsersInGroup($this->id);

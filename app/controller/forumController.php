@@ -49,7 +49,8 @@ class ForumController {
 		SiteController::loggedInCheck();
 
 		//Get forumid associated with the current group
-		$groupId = 1;                                                              //TODO: Not implemented
+		//get calendar id from group
+		$groupId = $_POST['groupId'];
 		$group_entry = Group::loadById($groupId);
 		$forumId = $group_entry->get('forumId');
         $forum = Forum::loadById($forumId);
@@ -185,7 +186,13 @@ class ForumController {
 		$post->set('description', $description);
 		$post->set('tag', $tag);
 		$post->set('ratingId', $rating->get('id'));
-		$post->set('forumId', 1);                                                 //TODO hardcoded, only 1 CRN page exists
+
+		//get forum id from group
+		$groupId = $_POST['groupId'];
+		$group = Group::loadById($groupId);
+		$forumId = $group->get('forumId');
+		$post->set('forumId', $forumId);                                                 
+
 		$post->save();
 
         //add postId to rating
