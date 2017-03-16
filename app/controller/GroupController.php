@@ -32,19 +32,11 @@ class GroupController {
 	public function newGroup_submit() {
 		SiteController::loggedInCheck();
 
-		//user canceled new event
+		//user canceled new group
 		if (isset($_POST['Cancel'])) {
-			header('Location: '.BASE_URL.'/calendar');											//TODO: update
+			header('Location: '.BASE_URL);											//TODO: update location?
 			exit();
 		}
-
-		// protected $number;      //crn, if a class, null otherwise
-	    // protected $group_name;
-		protected $calendarId;
-		protected $forumId;
-		protected $chatId;
-		protected $whiteboardId;
-		// protected $userId;
 
 		$groupName = $_POST['group_name'];
 																				//TODO: check if group name exists already
@@ -60,14 +52,20 @@ class GroupController {
 		$user_row = User::loadByUsername($_SESSION['username']);
 		$userid = $user_row->get('id');
 
+		//create modules for the group
+		$calendar = new Calendar();
+		$forum = new Forum();
+		$chat = new Chat();
+		$whiteboard = new Whiteboard();
+
 		$group = new Group();
 		$group->set('number', $number);
 		$group->set('group_name', $groupName);
-		$group->set('calendarId', 1);												//TODO: set these next 5 IDs
-		$group->set('forumId', 1);
-		$group->set('chatId', 1);
-		$group->set('whiteboardId', 1);
-		$group->set('userId', 1);
+		$group->set('userId', $userid);
+		$group->set('calendarId', $calendar->get('id'));
+		$group->set('forumId', $forum->get('id'));
+		$group->set('chatId', $chat->get('id'));
+		$group->set('whiteboardId', $whiteboard->get('id'));
 		$group->save();
 
 		header('Location: '.BASE_URL);

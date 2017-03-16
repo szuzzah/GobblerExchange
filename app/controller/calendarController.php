@@ -30,10 +30,13 @@ class CalendarController {
     public function calendar() {
 		SiteController::loggedInCheck();
 
+		//get calendar id from group
+		$groupId = $_POST['groupId'];
+		$group = Group::loadById($groupId);
+		$calendarId = $group->get('calendarId');
+
 		//Get calendarid associated with the group
-		$groupId = 1;                                                             //TODO: Not implemented
-		$group_entry = Group::loadById($groupId);
-		$calendarId = $group_entry->get('calendarId');
+		$calendarId =  $_POST['calendarId'];
 
 		//retrieve all events
         $calendar = Calendar::loadById($calendarId);
@@ -54,7 +57,7 @@ class CalendarController {
 
 		//user canceled new event
 		if (isset($_POST['Cancel'])) {
-			header('Location: '.BASE_URL.'/calendar');											//TODO: update
+			header('Location: '.BASE_URL.'/calendar');											//TODO: update location?
 			exit();
 		}
 
@@ -63,21 +66,21 @@ class CalendarController {
 		$timestamp = date("Y-m-d", time());
 		$author = $_SESSION['username'];
 
+		//get calendar id from group
+		$groupId = $_POST['groupId'];
+		$group = Group::loadById($groupId);
+		$calendarId = $group->get('calendarId');
+
 		//get author's id
 		$user_row = User::loadByUsername($author);
 		$userid = $user_row->get('id');
 
 		$event = new Event();
-		protected $timestamp; //date and time of event
-		protected $userId;
-		protected $location;
-		protected $description;
-		protected $calendarId;
 		$event->set('timestamp', $timestamp);
 		$event->set('userId', $userid);
 		$event->set('location', $location);
 		$event->set('description', $description);
-		$event->set('calendarId', 1);											//TODO set, hardcoded for now
+		$event->set('calendarId', $calendarId);
 		$event->save();
 
 		header('Location: '.BASE_URL.'/calendar');
