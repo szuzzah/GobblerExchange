@@ -52,9 +52,17 @@ class Event extends DbObject {
         date("Y-m-d H:i:s", $this->timestamp);
     }
 
-    //getter for date in readable format (ex. March 10, 2017)
+    //getter for date in readable format, for example: 3 15 2017
     public function getDate(){
-        return date("F j, Y", $this->timestamp);
+        return date("m d Y", $this->timestamp);
+    }
+
+    //converts readable format for date (m d Y) and time (H:i) into SQl datetime
+    public function convertToSQLDateTime($date, $time){
+        list($month, $day, $year) = split(' ', $date);
+        list($hour, $minute) = split(':', $time);
+
+        return date("Y-m-d H:i:s", mktime($hour, $minute, 0, $month, $day, $year));
     }
 
     //Getters for numeric month, day, and year

@@ -5,20 +5,33 @@ RewriteEngine on
 # ErrorDocument 404 /app/controller/error.php
 
 # Site
-RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
-RewriteRule ^$ app/controller/calendarController.php?action=calendar [QSA,L]
-
-RewriteRule ^editpost/?$ app/controller/siteController.php?action=editpost [QSA,L]
-RewriteRule ^editpost_submit/?$ app/controller/siteController.php?action=editpost_submit [QSA,L]
-RewriteRule ^calendar/?$ app/controller/siteController.php?action=calendar [QSA,L]
-RewriteRule ^chat/?$ app/controller/siteController.php?action=chat [QSA,L]
-RewriteRule ^newpost/?$ app/controller/siteController.php?action=newpost [QSA,L]
-RewriteRule ^newpost_submit/?$ app/controller/siteController.php?action=newpost_submit [QSA,L]
-RewriteRule ^deletepost/?$ app/controller/siteController.php?action=deletepost [QSA,L]
-RewriteRule ^upvote/?$ app/controller/siteController.php?action=upvote [QSA,L]
-RewriteRule ^downvote/?$ app/controller/siteController.php?action=downvote [QSA,L]
+RewriteRule ^$ app/controller/SiteController.php?action=home [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^signup/?$ app/controller/siteController.php?action=signup [QSA,L]
 RewriteRule ^postlogin/?$ app/controller/siteController.php?action=postlogin [QSA,L]
 RewriteRule ^register/?$ app/controller/siteController.php?action=register [QSA,L]
 RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]
+
+# Group
+RewriteRule ^chat/?$ app/controller/GroupController.php?action=chat [QSA,L]
+RewriteRule ^newgroup/?$ app/controller/GroupController.php?action=newGroup [QSA,L]
+RewriteRule ^newgroup_submit/?$ app/controller/GroupController.php?action=newGroup_submit [QSA,L]
+
+
+# Forum
+RewriteRule ^forum/?$ app/controller/ForumController.php?action=forum [QSA,L]
+RewriteRule ^editpost/?$ app/controller/ForumController.php?action=editpost [QSA,L]
+RewriteRule ^editpost_submit/?$ app/controller/ForumController.php?action=editpost_submit [QSA,L]
+RewriteRule ^newpost/?$ app/controller/ForumController.php?action=newpost [QSA,L]
+RewriteRule ^newpost_submit/?$ app/controller/ForumController.php?action=newpost_submit [QSA,L]
+RewriteRule ^deletepost/?$ app/controller/ForumController.php?action=deletepost [QSA,L]
+RewriteRule ^upvote/?$ app/controller/ForumController.php?action=upvote [QSA,L]
+RewriteRule ^downvote/?$ app/controller/ForumController.php?action=downvote [QSA,L]
+
+# Calendar
+RewriteRule ^calendar/?$ app/controller/CalendarController.php?action=calendar [QSA,L]
+RewriteRule ^editevent/?$ app/controller/ForumController.php?action=editEvent [QSA,L]
+RewriteRule ^editevent_submit/?$ app/controller/ForumController.php?action=editEvent_submit [QSA,L]
+RewriteRule ^newevent/?$ app/controller/ForumController.php?action=newEvent [QSA,L]
+RewriteRule ^newevent_submit/?$ app/controller/ForumController.php?action=newEvent_submit [QSA,L]
+RewriteRule ^deleteevent/?$ app/controller/ForumController.php?action=deleteEvent [QSA,L]

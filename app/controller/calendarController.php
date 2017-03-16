@@ -17,11 +17,23 @@ class CalendarController {
 			case 'calendar':
 				$this->calendar();
 				break;
+
 			case 'newEvent':
 				$this->newEvent();
 				break;
 			case 'newEvent_submit':
 				$this->newEvent();
+				break;
+
+			case 'editEvent':
+				$this->editEvent();
+				break;
+			case 'editEvent_submit':
+				$this->editEvent_submit();
+				break;
+
+			case 'deleteEvent':
+				$this->deleteEvent();
 				break;
 		}
 	}
@@ -85,5 +97,78 @@ class CalendarController {
 
 		header('Location: '.BASE_URL.'/calendar');
 		exit();
+	}
+
+	public function editEvent(){
+        SiteController::loggedInCheck();
+
+        //retrieve the event
+		$eventid = $_POST['edit'];
+		$event_row = Event::loadById($eventid);
+
+        //retrieve event author's username
+		$authorid = $event_row->get('userId');
+		$user = User::loadById($authorid);
+		$username = $user->get('username');
+
+		//check if author of the event is the logged in user
+		if($_SESSION['username'] != $username){
+			$_SESSION['info'] = "You can only edit events of which you are the author of.";
+			header('Location: '.BASE_URL);
+			exit();
+		} else {
+			//allow access to edit event
+			$location = $event_row->get('location');
+			$description = $event_row->get('description');
+			$date = $event_row->getDate();
+			$time = $event_row->getTime();
+			include_once SYSTEM_PATH.'/view/editevent.tpl';                           //TODO: check tpl is correct
+		}
+	}
+
+	public function editEvent_submit(){
+        SiteController::loggedInCheck();
+
+		//user canceled editing of event
+		if (isset($_POST['Cancel'])) {
+			header('Location: '.BASE_URL);
+			exit();
+		}
+
+		$eventid = $_POST['eventId'];
+		$event = Event::loadById($eventid);
+
+		$location = $_POST['location'];
+		$description = $_POST['description'];
+		$date = $_POST['date'];
+		$time = $_POST['time'];
+		$timestamp = Event::convertToSQLDateTime($date, $time);
+
+		$event = Event::loadById($eventid);
+		$event->set('location', $location);
+		$event->set('description', $body);
+		$event->set('timestamp', $timestamp);
+		$event->save();
+
+		header('Location: '.BASE_URL.'/calendar');
+	}
+
+	public function deleteEvent(){
+    	SiteController::loggedInCheck();
+
+		$eventid = $_POST['delete'];
+		$event_row = Event::loadById($eventid);
+		$event_author_id = $event_row->get('userId');
+		$event_author = User::loadById($event_author_id);
+
+		//user is the author of the event, allow delete
+		if($event_author->get('username') == $_SESSION['username']){
+			$event_row->delete();
+		} else {
+			$_SESSION['info'] = "You can only delete events you have created.";
+		}
+
+		//refresh page
+		header('Location: '.BASE_URL.'/calendar');
 	}
 }
