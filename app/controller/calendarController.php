@@ -38,7 +38,10 @@ class CalendarController {
 		}
 	}
 
-	// Opens the calendar view page for a particular group
+	/* Opens the calendar view page for a particular group
+	 * Prereq (POST variables): groupId
+	 * Page variables: $events - list of events in the calendar
+	 */
     public function calendar() {
 		SiteController::loggedInCheck();
 
@@ -56,14 +59,20 @@ class CalendarController {
 		include_once SYSTEM_PATH.'/view/calendar.tpl';                            //TODO: make sure this is the right tpl
 	}
 
-	//Opens the form to fill out a new event
+	/* Opens the form to fill out a new event
+	 * Prereq (POST variables): N/A
+	 * Page variables: N/A
+	 */
 	public function newEvent() {
 		SiteController::loggedInCheck();
 
 		include_once SYSTEM_PATH.'/view/newevent.tpl';								//TODO: check tpl name
 	}
 
-	//Submits the new event forum
+	/* Submits the new event form
+	 * Prereq (POST variables): Cancel, location, description)
+	 * Page variables: N/A
+	 */
 	public function newEvent_submit() {
 		SiteController::loggedInCheck();
 
@@ -99,6 +108,10 @@ class CalendarController {
 		exit();
 	}
 
+	/* Brings up form for editing an event
+	 * Prereq (POST variables): edit (event id)
+	 * Page variables: location, description, date, time
+	 */
 	public function editEvent(){
         SiteController::loggedInCheck();
 
@@ -126,6 +139,10 @@ class CalendarController {
 		}
 	}
 
+	/* Publishes edited event
+	 * Prereq (POST variables): Cancel, eventId, location, description, date, time
+	 * Page variables: N/A
+	 */
 	public function editEvent_submit(){
         SiteController::loggedInCheck();
 
@@ -153,6 +170,10 @@ class CalendarController {
 		header('Location: '.BASE_URL.'/calendar');
 	}
 
+	/* Deletes an event, if the author is the one deleting it
+	 * Prereq (POST variables): delete (event id)
+	 * Page variables: SESSION[info]
+	 */
 	public function deleteEvent(){
     	SiteController::loggedInCheck();
 

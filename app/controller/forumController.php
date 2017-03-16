@@ -45,6 +45,10 @@ class ForumController {
 		}
 	}
 
+	/* Shows the forum posts
+	 * Prereq (POST variables): groupId
+	 * Page variables: $posts, $pinned_posts
+	 */
     public function forum() {
 		SiteController::loggedInCheck();
 
@@ -61,6 +65,10 @@ class ForumController {
 		include_once SYSTEM_PATH.'/view/forum.tpl';                               //TODO: make sure this is the correct tpl
 	}
 
+	/* Opens edit post form
+	 * Prereq (POST variables): edit (post id)
+	 * Page variables: title, body, tag
+	 */
 	public function editpost(){
         SiteController::loggedInCheck();
 
@@ -87,6 +95,10 @@ class ForumController {
 		}
 	}
 
+	/* Publishes an edited post
+	 * Prereq (POST variables): Cancel, title, description, tag
+	 * Page variables: N/A
+	 */
 	public function editpost_submit(){
         SiteController::loggedInCheck();
 
@@ -113,6 +125,10 @@ class ForumController {
 		header('Location: '.BASE_URL);
 	}
 
+	/* Upvotes a post
+	 * Prereq (POST variables): upvote (post id)
+	 * Page variables: N/A
+	 */
 	public function upvote(){
         SiteController::loggedInCheck();
 
@@ -132,6 +148,10 @@ class ForumController {
 		}
 	}
 
+	/* Downvote a post
+	 * Prereq (POST variables): downvote (post id)
+	 * Page variables: N/A
+	 */
 	public function downvote(){
         SiteController::loggedInCheck();
 
@@ -143,18 +163,27 @@ class ForumController {
         $user = User::loadByUsername($_SESSION['username']);
         $userId = $user->get('id');
 
-        //upvote the post
-        $post->upvote($userId);
+        //downvote the post
+        $post->downvote($userId);
 
 		header('Location: '.BASE_URL);
 		exit();
 	}
 
+	/* Opens form for a new post
+	 * Prereq (POST variables): N/A
+	 * Page variables: N/A
+	 */
 	public function newpost(){
         SiteController::loggedInCheck();
 
 		include_once SYSTEM_PATH.'/view/newpost.tpl';                             //TODO make sure the tpl is correct
 	}
+
+	/* Publishes new post
+	 * Prereq (POST variables): Cancel, title, description, tag, groupId
+	 * Page variables: N/A
+	 */
 	public function newpost_submit(){
         SiteController::loggedInCheck();
 
@@ -191,7 +220,7 @@ class ForumController {
 		$groupId = $_POST['groupId'];
 		$group = Group::loadById($groupId);
 		$forumId = $group->get('forumId');
-		$post->set('forumId', $forumId);                                                 
+		$post->set('forumId', $forumId);
 
 		$post->save();
 
@@ -201,6 +230,10 @@ class ForumController {
 		header('Location: '.BASE_URL);
 	}
 
+	/* Deletes a post
+	 * Prereq (POST variables): delete (post id)
+	 * Page variables: SESSION[info]
+	 */
 	public function deletepost(){
     	SiteController::loggedInCheck();
 

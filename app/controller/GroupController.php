@@ -23,12 +23,20 @@ class GroupController {
 		}
 	}
 
+	/* Opens form for creating a new group
+	 * Prereq (POST variables): N/A
+	 * Page variables: N/A
+	 */
     public function newGroup() {
 		SiteController::loggedInCheck();
 
 		include_once SYSTEM_PATH.'/view/newgroup.tpl';								//TODO: check tpl name
 	}
 
+	/* Creates/publishes a new group
+	 * Prereq (POST variables): Cancel, group_name, type (CRN or non-CRN), number (crn)
+	 * Page variables: SESSION[error]
+	 */
 	public function newGroup_submit() {
 		SiteController::loggedInCheck();
 
@@ -47,7 +55,7 @@ class GroupController {
 			exit();
 		}
 
-		$type = $_POST['type'];		//class or non-class
+		$type = $_POST['type'];		//is it a class or not?
 
 		 // if class, number = crn; null otherwise
 		 $number = NULL;
