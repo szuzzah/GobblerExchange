@@ -5,11 +5,11 @@ include_once '../global.php';
 // get the identifier for the page we want to load
 $action = $_GET['action'];
 
-// instantiate a SiteController and route it
-$sc = new SiteController();
+// instantiate a ForumController and route it
+$sc = new ForumController();
 $sc->route($action);
 
-class SiteController {
+class ForumController {
 
 	// route us to the appropriate class method for this action
 	public function route($action) {
@@ -46,7 +46,7 @@ class SiteController {
 	}
 
     public function forum() {
-		siteController::loggedInCheck();
+		SiteController::loggedInCheck();
 
 		//Get forumid associated with the current group
 		$groupId = 1;                                                              //TODO: Not implemented
@@ -61,7 +61,7 @@ class SiteController {
 	}
 
 	public function editpost(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
         //retrieve the post
 		$postid = $_POST['edit'];
@@ -87,7 +87,7 @@ class SiteController {
 	}
 
 	public function editpost_submit(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
 		if (isset($_POST['Cancel'])) {
 			header('Location: '.BASE_URL);
@@ -113,7 +113,7 @@ class SiteController {
 	}
 
 	public function upvote(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
 		//get post
 		$postId = $_POST['upvote'];
@@ -132,7 +132,7 @@ class SiteController {
 	}
 
 	public function downvote(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
         //get post
 		$postId = $_POST['downvote'];
@@ -150,12 +150,12 @@ class SiteController {
 	}
 
 	public function newpost(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
 		include_once SYSTEM_PATH.'/view/newpost.tpl';                             //TODO make sure the tpl is correct
 	}
 	public function newpost_submit(){
-        siteController::loggedInCheck();
+        SiteController::loggedInCheck();
 
 		if (isset($_POST['Cancel'])) {
 			header('Location: '.BASE_URL);
@@ -195,8 +195,8 @@ class SiteController {
 	}
 
 	public function deletepost(){
-        siteController::loggedInCheck();
-        
+    	SiteController::loggedInCheck();
+
 		$postid = $_POST['delete'];
 		$post_row = ForumPost::loadById($postid);
 		$post_author_id = $post_row->get('userId');
