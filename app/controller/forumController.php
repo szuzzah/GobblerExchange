@@ -145,7 +145,6 @@ class ForumController {
 
 		header('Location: '.BASE_URL);
 		exit();
-		}
 	}
 
 	/* Downvote a post
@@ -250,6 +249,6 @@ class ForumController {
 		}
 
 		//refresh page
-		header('Location: '.BASE_URL);
+		header('Location: '.BASE_URL);											//TODO update
 	}
 }

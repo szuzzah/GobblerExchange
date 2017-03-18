@@ -2,7 +2,7 @@
 class User extends DbObject {
     // name of database table
     const DB_TABLE = 'user';
-    
+
     // database fields
     protected $id;
     protected $name;
@@ -43,7 +43,7 @@ class User extends DbObject {
     public function delete()
     {
          $db = Db::instance();
-            $query = sprintf(" DELETE FROM %s  WHERE username = '%s' AND pw = '%s' ",
+            $query = sprintf(" DELETE FROM %s  WHERE username = '%s' AND password = '%s' ",
             self::DB_TABLE,
             $this->username,
             $this->pw
