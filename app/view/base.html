@@ -8,6 +8,7 @@
         <script src="../../public/js/base.js"></script>
         <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../public/css/base.css">
+        <script src="https://use.fontawesome.com/625f8d2098.js"></script>
     </head>
     <body>
       <div class="container">
@@ -48,14 +49,15 @@
               <li><a href="#">Email</a></li>
             </ul>
           </div><!-- /btn-group -->
-          <input id = "searchBar" type="text" class="form-control" aria-label="...">
+          <input type="hidden" name="search_param" value="all" id="search_param">
+          <input type="text" class="form-control" name="x" placeholder="Search term...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
-      <div class="col-lg-2">
-          <button id = "button" type="button" class="btn btn-primary" aria-label="Left Align">
-            Search
-          </button>
-      </div>
     </div><!-- /.row -->
 </div>
 
@@ -102,7 +104,7 @@
                 <!-- Chat box -->
                 CHAT SPACE FOR GREG :)
                 <iframe id="chat" src=""></iframe>
-                
+
             </div>
         </div>
     </div>
