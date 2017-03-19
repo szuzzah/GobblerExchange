@@ -53,3 +53,12 @@ RewriteRule ^newnotes_submit/?$ app/controller/NotesController.php?action=newnot
 RewriteRule ^deletenotes/?$ app/controller/NotesController.php?action=deletenotes [QSA,L]
 RewriteRule ^upvotenotes/?$ app/controller/NotesController.php?action=upvotenotes [QSA,L]
 RewriteRule ^downvotenotes/?$ app/controller/NotesController.php?action=downvotenotes [QSA,L]
+
+# Comment
+RewriteRule ^editcomment/?$ app/controller/CommentController.php?action=editcomment [QSA,L]
+RewriteRule ^editcomment_submit/?$ app/controller/CommentController.php?action=editcomment_submit [QSA,L]
+RewriteRule ^newnotescomment/?$ app/controller/CommentController.php?action=newnotescomment [QSA,L]
+RewriteRule ^newnotescomment_submit/?$ app/controller/CommentController.php?action=newnotescomment_submit [QSA,L]
+RewriteRule ^newpostcomment/?$ app/controller/CommentController.php?action=newpostcomment [QSA,L]
+RewriteRule ^newpostcomment_submit/?$ app/controller/CommentController.php?action=newpostcomment_submit [QSA,L]
+RewriteRule ^deletecomment/?$ app/controller/CommentController.php?action=deletecomment [QSA,L]

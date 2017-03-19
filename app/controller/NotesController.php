@@ -90,7 +90,7 @@ class NotesController {
 	}
 
 	/* Publishes updated notes
-	 * Prereq (POST variables): Cancel, title, link, tag
+	 * Prereq (POST variables): Cancel, title, link, tag, notesId
 	 * Page variables: N/A
 	 */
 	public function editnotes_submit(){
@@ -230,7 +230,7 @@ class NotesController {
 		$notesAuthor = User::loadById($notesAuthorId);
 
 		//user is the author of the notes, allow delete
-		if($pnotesAuthor->get('username') == $_SESSION['username']){
+		if($notesAuthor->get('username') == $_SESSION['username']){
 			$notes->delete();
 		} else {
 			$_SESSION['info'] = "You can only delete notes you have created.";

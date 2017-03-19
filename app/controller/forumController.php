@@ -96,7 +96,7 @@ class ForumController {
 	}
 
 	/* Publishes an edited post
-	 * Prereq (POST variables): Cancel, title, description, tag
+	 * Prereq (POST variables): Cancel, title, description, tag, postid
 	 * Page variables: N/A
 	 */
 	public function editpost_submit(){

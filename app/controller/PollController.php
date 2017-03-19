@@ -83,7 +83,7 @@ class PollController {
 	}
 
 	/* Publishes an edited poll
-	 * Prereq (POST variables): Cancel, title, options
+	 * Prereq (POST variables): Cancel, title, options, pollid
 	 * Page variables: N/A
 	 */
 	public function editpoll_submit(){
