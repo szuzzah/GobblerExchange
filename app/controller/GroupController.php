@@ -20,6 +20,10 @@ class GroupController {
 			case 'newGroup_submit':
 				$this->newGroup_submit();
 				break;
+
+			case 'search':
+				$this->search();
+				break;
 		}
 	}
 
@@ -85,5 +89,29 @@ class GroupController {
 
 		header('Location: '.BASE_URL);
 		exit();
+	}
+
+	/* Creates/publishes a new group
+	 * Prereq (POST variables): type, search
+	 * Page variables: result
+	 */
+	public function search(){
+		$type = $_POST['type']; //crn, group, username or email
+		$search_term = $_POST['search']; //entered into search bar
+
+		$result = "";
+		switch ($type) {
+			case "crn":
+				$result = Group::searchCRN($search_term);
+			break;
+			case "group":
+				$result = Group::searchGroupName($search_term);
+			break;
+			case "username":
+				$result = User::searchUsername($search_term);
+			break;
+			case "email":
+				$result = User::searchEmail($search_term);
+		}
 	}
 }
