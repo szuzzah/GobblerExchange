@@ -70,7 +70,7 @@ class CalendarController {
 	}
 
 	/* Submits the new event form
-	 * Prereq (POST variables): Cancel, location, description)
+	 * Prereq (POST variables): Cancel, location, description, date, time
 	 * Page variables: N/A
 	 */
 	public function newEvent_submit() {
@@ -84,7 +84,9 @@ class CalendarController {
 
 		$location = $_POST['location'];
 		$description = $_POST['description'];
-		$timestamp = date("Y-m-d", time());
+		$time = $_POST['date'];
+		$date = $_POST['time'];														//TODO worry about am/pm
+		$timestamp = Event::convertToSQLDateTime($date, $time);
 		$author = $_SESSION['username'];
 
 		//get calendar id from group
@@ -133,7 +135,7 @@ class CalendarController {
 			//allow access to edit event
 			$location = $event_row->get('location');
 			$description = $event_row->get('description');
-			$date = $event_row->getDate();
+			$date = $event_row->getDate();												//TODO worry about am/pm
 			$time = $event_row->getTime();
 			include_once SYSTEM_PATH.'/view/editevent.tpl';                           //TODO: check tpl is correct
 		}
@@ -157,7 +159,7 @@ class CalendarController {
 
 		$location = $_POST['location'];
 		$description = $_POST['description'];
-		$date = $_POST['date'];
+		$date = $_POST['date'];																//TODO worry about am/pm
 		$time = $_POST['time'];
 		$timestamp = Event::convertToSQLDateTime($date, $time);
 

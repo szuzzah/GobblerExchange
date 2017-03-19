@@ -99,5 +99,26 @@ class Poll extends DbObject {
             return ($objects);
         }
     }
+
+    //get all open polls for a group, starting with the most recent
+    //**This function can be called from the Group class.
+    public function getAllOpenPolls($groupId){
+        $query = sprintf(" SELECT * FROM %s WHERE groupId=%s AND isOpen=true ORDER BY timestamp DESC",
+            self::DB_TABLE,
+            $forumId
+        );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $objects = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $objects[] = self::loadById($row['id']);
+            }
+            return ($objects);
+        }
+    }
 }
 ?>
