@@ -9,6 +9,7 @@ class Poll extends DbObject {
     protected $userId;     //author
     protected $groupId;
     protected $timestamp;
+    protected $isOpen;
 
     //constructor
     public function __construct($args = array()){
@@ -17,7 +18,8 @@ class Poll extends DbObject {
             'title' => null,
             'userId' => null,
             'groupId' => null,
-            'timestamp' => null
+            'timestamp' => null,
+            'isOpen' => null
         );
 
         $args += $defaultArgs;
@@ -27,6 +29,7 @@ class Poll extends DbObject {
         $this->userId = $args['userId'];
         $this->groupId = $args['groupId'];
         $this->timestamp = $args['timestamp'];
+        $this->isOpen = $args['isOpen'];
     }
 
     //save changes to database
@@ -37,7 +40,8 @@ class Poll extends DbObject {
             'title' => $this->title,
             'userId' => $this->userId,
             'groupId' => $this->groupId,
-            'timestamp' => $this->timestamp
+            'timestamp' => $this->timestamp,
+            'isOpen' => $this->isOpen
         );
 
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
@@ -62,6 +66,17 @@ class Poll extends DbObject {
 
     public function getPollOptions(){
         return PollOptions::getPollOptions($this->id);
+    }
+
+    public function openPoll($pollId){
+        $poll = Poll::loadById($pollId);
+        $poll->set('isOpen', true);
+        $poll->save();
+    }
+    public function closePoll($pollId){
+        $poll = Poll::loadById($pollId);
+        $poll->set('isOpen', false);
+        $poll->save();
     }
 
     //get all polls for a group
