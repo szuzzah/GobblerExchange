@@ -80,29 +80,6 @@ class Group extends DbObject {
         }
     }
 
-    //general search via group_name
-    public static function searchGroupName($group_name, $search_string) {
-        $query = sprintf(" SELECT id FROM %s WHERE",
-            self::DB_TABLE
-            );
-
-        //split search string up by spaces (build query)
-        $array = explode(" ", $search_string);
-        foreach($array as $word) {
-            $query .= " group_name LIKE '" . $word . "'"
-        }
-
-        $db = Db::instance();
-        $result = $db->lookup($query);
-        if(!mysql_num_rows($result))
-            return null;
-        else {
-            $row = mysql_fetch_assoc($result);
-            $obj = self::loadById($row['id']);
-            return ($obj);
-        }
-    }
-
     //checks if the group name has already been taken
     public static function checkGroupNameAvailability($groupname){
         if($groupname === null)
@@ -133,6 +110,44 @@ class Group extends DbObject {
     //get all polls for this group
     public function getAllPolls(){
         return Poll::getAllPolls($this->id);
+    }
+
+    //SEARCH FUNCTIONS ---------------------------------------------------
+
+    //search by CRN
+    public static function searchCRN($crn) {
+        $query = sprintf(" SELECT id FROM %s WHERE number='%s'",
+            self::DB_TABLE,
+            $crn
+            );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
+
+    //search by group name
+    public static function searchGroupName($group_name) {
+        $query = sprintf(" SELECT id FROM %s WHERE group_name='%s'",
+            self::DB_TABLE,
+            $group_name
+            );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
     }
 }
 ?>

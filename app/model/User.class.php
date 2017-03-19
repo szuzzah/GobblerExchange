@@ -154,4 +154,41 @@ class User extends DbObject {
             return true;
         }
     }
+
+    //SEARCH FUNCTIONS --------------------------------------------------------
+    //search by username
+    public static function searchUsername($username) {
+        $query = sprintf(" SELECT id FROM %s WHERE username='%s'",
+            self::DB_TABLE,
+            $username
+            );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
+
+    //search by email
+    public static function searchEmail($email) {
+        $query = sprintf(" SELECT id FROM %s WHERE email='%s'",
+            self::DB_TABLE,
+            $email
+            );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
 }
