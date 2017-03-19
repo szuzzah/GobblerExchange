@@ -60,13 +60,13 @@ class Poll extends DbObject {
         return $obj;
     }
 
-    public static function getPollOptions(){
+    public function getPollOptions(){
         return PollOptions::getPollOptions($this->id);
     }
 
     //get all polls for a group
     //**This function can be called from the Group class.
-    public static function getAllPolls($groupId){
+    public function getAllPolls($groupId){
         $query = sprintf(" SELECT * FROM %s WHERE groupId=%s ORDER BY timestamp DESC",
             self::DB_TABLE,
             $forumId

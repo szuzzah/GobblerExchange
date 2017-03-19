@@ -14,6 +14,10 @@ class PollController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
 		switch($action) {
+			case 'polls':
+				$this->polls();
+				break;
+
 			case 'editpoll':
 				$this->editpoll();
 				break;
@@ -34,11 +38,26 @@ class PollController {
 		}
 	}
 
+	/* Shows the polls
+	 * Prereq (POST variables): groupId
+	 * Page variables: $polls
+	 */
+	public function polls() {
+		SiteController::loggedInCheck();
+
+		//Get polls associated with the current group
+		$groupId = $_POST['groupId'];
+		$group = Group::loadById($groupId);
+		$polls = $group->getAllPolls();
+
+		include_once SYSTEM_PATH.'/view/polls.tpl';                               //TODO: make sure this is the correct tpl
+	}
+
 	/* Opens edit poll form
 	 * Prereq (POST variables): edit (poll id)
 	 * Page variables: title, options
 	 */
-	public function editpost(){
+	public function editpoll(){
         SiteController::loggedInCheck();
 
         //retrieve the poll
@@ -50,14 +69,14 @@ class PollController {
 		$user = User::loadById($authorid);
 		$username = $user->get('username');
 
-		//check if author of the post is the logged in user
+		//check if author of the poll is the logged in user
 		if($_SESSION['username'] != $username){
 			$_SESSION['info'] = "You can only edit polls of which you are the author of.";
 			header('Location: '.BASE_URL);
 			exit();
 		} else {
 			//allow access to edit poll
-			$title = $post->get('title');
+			$title = $poll->get('title');
             $options = $poll->getPollOptions();
 			include_once SYSTEM_PATH.'/view/editpoll.tpl';                           //TODO: check tpl is correct
 		}
@@ -67,7 +86,7 @@ class PollController {
 	 * Prereq (POST variables): Cancel, title, options
 	 * Page variables: N/A
 	 */
-	public function editpost_submit(){
+	public function editpoll_submit(){
         SiteController::loggedInCheck();
 
 		if (isset($_POST['Cancel'])) {
@@ -103,51 +122,7 @@ class PollController {
 		header('Location: '.BASE_URL);
 	}
 
-	/* Upvotes a post
-	 * Prereq (POST variables): upvote (post id)
-	 * Page variables: N/A
-	 */
-	public function upvote(){
-        SiteController::loggedInCheck();
-
-		//get post
-		$postId = $_POST['upvote'];
-        $post = ForumPost::loadById($postId);
-
-        //get the user who upvoted the post
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //upvote the post
-        $post->upvote($userId);
-
-		header('Location: '.BASE_URL);
-		exit();
-	}
-
-	/* Downvote a post
-	 * Prereq (POST variables): downvote (post id)
-	 * Page variables: N/A
-	 */
-	public function downvote(){
-        SiteController::loggedInCheck();
-
-        //get post
-		$postId = $_POST['downvote'];
-        $post = ForumPost::loadById($postId);
-
-        //get the user who downvoted the post
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //downvote the post
-        $post->downvote($userId);
-
-		header('Location: '.BASE_URL);
-		exit();
-	}
-
-	/* Opens form for a new poll forum post
+	/* Opens form for a new poll forum poll
 	 * Prereq (POST variables): N/A
 	 * Page variables: N/A
 	 */
@@ -214,7 +189,7 @@ class PollController {
 		$pollAuthorId = $poll->get('userId');
 		$pollAuthor = User::loadById($pollAuthorId);
 
-		//user is the author of the post, allow delete
+		//user is the author of the poll, allow delete
 		if($pollAuthor->get('username') == $_SESSION['username']){
 			$poll->delete();
 		} else {

@@ -36,10 +36,10 @@ class ForumController {
 				$this->deletepost();
 				break;
 
-			case 'upvote':
+			case 'upvotepost':
 				$this->upvote();
 				break;
-			case 'downvote':
+			case 'downvotepost':
 				$this->downvote();
 				break;
 		}
@@ -115,7 +115,6 @@ class ForumController {
 		$tag = $_POST['tag'];
 		$timestamp = date("Y-m-d", time());
 
-		$post = ForumPost::loadById($postid);
 		$post->set('title', $title);
 		$post->set('description', $body);
 		$post->set('tag', $tag);

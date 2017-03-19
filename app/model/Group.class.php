@@ -121,13 +121,18 @@ class Group extends DbObject {
     }
 
     //get all users in this group
-    public static function getUsers(){
+    public function getUsers(){
         return UserGroup::getAllUsersInGroup($this->id);
     }
 
     //get all notes for this group
-    public static function getNotes(){
+    public function getNotes(){
         return Notes::getAllNotes($this->id);
+    }
+
+    //get all polls for this group
+    public function getAllPolls(){
+        return Poll::getAllPolls($this->id);
     }
 }
 ?>
