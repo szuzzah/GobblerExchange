@@ -40,7 +40,7 @@ class ForumController {
 
 	/* Shows the forum posts
 	 * Prereq (POST variables): groupId
-	 * Page variables: $posts, $pinned_posts
+	 * Page variables: posts, pinned_posts, polls
 	 */
     public function forum() {
 		SiteController::loggedInCheck();
@@ -55,6 +55,7 @@ class ForumController {
 		//retrieve all posts from the forum
 		$posts = $forum->getPosts();
         $pinned_posts = $forum->getPinnedPosts();
+		$polls = Poll::getAllOpenPolls($groupId);
 		include_once SYSTEM_PATH.'/view/forum.tpl';                               //TODO: make sure this is the correct tpl
 	}
 
