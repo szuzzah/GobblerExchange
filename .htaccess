@@ -25,8 +25,6 @@ RewriteRule ^editpost_submit/?$ app/controller/ForumController.php?action=editpo
 RewriteRule ^newpost/?$ app/controller/ForumController.php?action=newpost [QSA,L]
 RewriteRule ^newpost_submit/?$ app/controller/ForumController.php?action=newpost_submit [QSA,L]
 RewriteRule ^deletepost/?$ app/controller/ForumController.php?action=deletepost [QSA,L]
-RewriteRule ^upvotepost/?$ app/controller/ForumController.php?action=upvotepost [QSA,L]
-RewriteRule ^downvotepost/?$ app/controller/ForumController.php?action=downvotepost [QSA,L]
 
 # Calendar
 RewriteRule ^calendar/?$ app/controller/CalendarController.php?action=calendar [QSA,L]
@@ -51,8 +49,6 @@ RewriteRule ^editnotes_submit/?$ app/controller/NotesController.php?action=editn
 RewriteRule ^newnotes/?$ app/controller/NotesController.php?action=newnotes [QSA,L]
 RewriteRule ^newnotes_submit/?$ app/controller/NotesController.php?action=newnotes_submit [QSA,L]
 RewriteRule ^deletenotes/?$ app/controller/NotesController.php?action=deletenotes [QSA,L]
-RewriteRule ^upvotenotes/?$ app/controller/NotesController.php?action=upvotenotes [QSA,L]
-RewriteRule ^downvotenotes/?$ app/controller/NotesController.php?action=downvotenotes [QSA,L]
 
 # Comment
 RewriteRule ^editcomment/?$ app/controller/CommentController.php?action=editcomment [QSA,L]
@@ -62,3 +58,9 @@ RewriteRule ^newnotescomment_submit/?$ app/controller/CommentController.php?acti
 RewriteRule ^newpostcomment/?$ app/controller/CommentController.php?action=newpostcomment [QSA,L]
 RewriteRule ^newpostcomment_submit/?$ app/controller/CommentController.php?action=newpostcomment_submit [QSA,L]
 RewriteRule ^deletecomment/?$ app/controller/CommentController.php?action=deletecomment [QSA,L]
+
+# Rating
+RewriteRule ^upvotepost/?$ app/controller/ForumController.php?action=upvotepost [QSA,L]
+RewriteRule ^downvotepost/?$ app/controller/ForumController.php?action=downvotepost [QSA,L]
+RewriteRule ^upvotenotes/?$ app/controller/NotesController.php?action=upvotenotes [QSA,L]
+RewriteRule ^downvotenotes/?$ app/controller/NotesController.php?action=downvotenotes [QSA,L]

@@ -35,13 +35,6 @@ class NotesController {
 			case 'deletenotes':
 				$this->deletenotes();
 				break;
-
-			case 'upvotenotes':
-				$this->upvote();
-				break;
-			case 'downvotenotes':
-				$this->downvote();
-				break;
 		}
 	}
 
@@ -116,50 +109,6 @@ class NotesController {
 		$notes->save();
 
 		header('Location: '.BASE_URL);											//TODO update
-	}
-
-	/* Upvotes notes
-	 * Prereq (POST variables): notesId
-	 * Page variables: N/A
-	 */
-	public function upvote(){
-        SiteController::loggedInCheck();
-
-		//get notes
-		$notesId = $_POST['notesId'];
-        $notes = Notes::loadById($notesId);
-
-        //get the user who upvoted the notes
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //upvote the notes
-        $notes->upvote($userId);
-
-		header('Location: '.BASE_URL);											//TODO update
-		exit();
-	}
-
-	/* Downvote notes
-	 * Prereq (POST variables): notesId
-	 * Page variables: N/A
-	 */
-	public function downvote(){
-        SiteController::loggedInCheck();
-
-        //get notes
-		$notesId = $_POST['notesId'];
-        $notes = Notes::loadById($notesId);
-
-        //get the user who downvoted the Notes
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //downvote the notes
-        $notes->downvote($userId);
-
-		header('Location: '.BASE_URL);												//TODO update
-		exit();
 	}
 
 	/* Opens form for new notes

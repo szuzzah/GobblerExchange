@@ -35,13 +35,6 @@ class ForumController {
 			case 'deletepost':
 				$this->deletepost();
 				break;
-
-			case 'upvotepost':
-				$this->upvote();
-				break;
-			case 'downvotepost':
-				$this->downvote();
-				break;
 		}
 	}
 
@@ -122,50 +115,6 @@ class ForumController {
 		$post->save();
 
 		header('Location: '.BASE_URL);
-	}
-
-	/* Upvotes a post
-	 * Prereq (POST variables): upvote (post id)
-	 * Page variables: N/A
-	 */
-	public function upvote(){
-        SiteController::loggedInCheck();
-
-		//get post
-		$postId = $_POST['upvote'];
-        $post = ForumPost::loadById($postId);
-
-        //get the user who upvoted the post
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //upvote the post
-        $post->upvote($userId);
-
-		header('Location: '.BASE_URL);
-		exit();
-	}
-
-	/* Downvote a post
-	 * Prereq (POST variables): downvote (post id)
-	 * Page variables: N/A
-	 */
-	public function downvote(){
-        SiteController::loggedInCheck();
-
-        //get post
-		$postId = $_POST['downvote'];
-        $post = ForumPost::loadById($postId);
-
-        //get the user who downvoted the post
-        $user = User::loadByUsername($_SESSION['username']);
-        $userId = $user->get('id');
-
-        //downvote the post
-        $post->downvote($userId);
-
-		header('Location: '.BASE_URL);
-		exit();
 	}
 
 	/* Opens form for a new post
