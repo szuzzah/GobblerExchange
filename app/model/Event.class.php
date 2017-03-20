@@ -106,7 +106,7 @@ class Event extends DbObject {
         return $obj;
     }
 
-    private static function getAllEventsByDate($timestamp){
+    public static function getAllEventsByDate($calendarId, $timestamp){
         //get just the database
         $year = date("Y", $timestamp);
         $month = date("m", $timestamp);
@@ -115,8 +115,44 @@ class Event extends DbObject {
         $start = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day, $year));
         $end = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $day, $year));
 
-        $query = sprintf("SELECT * FROM %s WHERE timestamp BETWEEN %s and %s",
+        $query = sprintf("SELECT * FROM %s WHERE calendarId=%s AND timestamp BETWEEN %s and %s",
             self::DB_TABLE,
+            $calendarId
+            $start,
+            $end
+        );
+
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $objects = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $objects[] = self::loadById($row['id']);
+            }
+            return ($objects);
+        }
+    }
+
+    //Note: index month 1 - 12, not 0 - 11
+    private static function getAllEventsByMonth($calendarId, $month, $year){
+        //get just the database
+        $year = date("Y", $year);
+        $month = date("m", $month);
+
+        $start = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, 1, $year));
+        $end = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, 31, $year));
+        if($month == 2){
+                    $end = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, 28, $year));
+        }
+        else if($month == 4 || $month == 6 || $month == 9 || $month == 11){
+            $end = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, 30, $year));
+        }
+
+        $query = sprintf("SELECT * FROM %s WHERE calendarId=%s AND timestamp BETWEEN %s and %s",
+            self::DB_TABLE,
+            $calendarId
             $start,
             $end
         );
