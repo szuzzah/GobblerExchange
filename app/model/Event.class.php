@@ -117,7 +117,7 @@ class Event extends DbObject {
 
         $query = sprintf("SELECT * FROM %s WHERE calendarId=%s AND timestamp BETWEEN %s and %s",
             self::DB_TABLE,
-            $calendarId
+            $calendarId,
             $start,
             $end
         );
@@ -152,7 +152,7 @@ class Event extends DbObject {
 
         $query = sprintf("SELECT * FROM %s WHERE calendarId=%s AND timestamp BETWEEN %s and %s",
             self::DB_TABLE,
-            $calendarId
+            $calendarId,
             $start,
             $end
         );
