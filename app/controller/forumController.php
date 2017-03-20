@@ -43,20 +43,20 @@ class ForumController {
 	 * Page variables: posts, pinned_posts, polls
 	 */
     public function forum() {
-		SiteController::loggedInCheck();
+		// SiteController::loggedInCheck();
 
 		//Get forumid associated with the current group
 		//get calendar id from group
-		$groupId = $_POST['groupId'];
-		$group_entry = Group::loadById($groupId);
-		$forumId = $group_entry->get('forumId');
-        $forum = Forum::loadById($forumId);
-
-		//retrieve all posts from the forum
-		$posts = $forum->getPosts();
-        $pinned_posts = $forum->getPinnedPosts();
-		$polls = Poll::getAllOpenPolls($groupId);
-		include_once SYSTEM_PATH.'/view/forum.tpl';                               //TODO: make sure this is the correct tpl
+		// $groupId = $_POST['groupId'];
+		// $group_entry = Group::loadById($groupId);
+		// $forumId = $group_entry->get('forumId');
+    //     $forum = Forum::loadById($forumId);
+		//
+		// //retrieve all posts from the forum
+		// $posts = $forum->getPosts();
+    //     $pinned_posts = $forum->getPinnedPosts();
+		// $polls = Poll::getAllOpenPolls($groupId);
+		include_once SYSTEM_PATH.'/view/forum.html';                               //TODO: make sure this is the correct tpl
 	}
 
 	/* Opens edit post form

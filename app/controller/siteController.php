@@ -63,16 +63,17 @@ class SiteController {
 	}
 
     public function home() {
-		self::loggedInCheck();
+																											//TODO uncomment logincheck once login page complete
+		// self::loggedInCheck();
 
 		//Get forumid associated with the current crn
-		$crnid = 1; //Not implemented
-		$crn_row = Crn::loadById($crnid);
-		$forumid = $crn_row->get('forumId');
+		$groupid = 1; //Not implemented
+		$group_row = Group::loadById($groupid);
+		$forumid = $group_row->get('forumId');
 
 		//retrieve all posts from the forum
 		$posts = ForumPost::getAllPosts($forumid);
-		include_once SYSTEM_PATH.'/view/home.tpl';
+		include_once SYSTEM_PATH.'/view/testHome.html';
 	}
 
 	// public function editpost(){

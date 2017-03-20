@@ -6,7 +6,7 @@ include_once '../global.php';
 $action = $_GET['action'];
 
 // instantiate a calendarController and route it
-$sc = new calendarController();
+$sc = new CalendarController();
 $sc->route($action);
 
 class CalendarController {
@@ -43,20 +43,19 @@ class CalendarController {
 	 * Page variables: $events - list of events in the calendar
 	 */
     public function calendar() {
-		SiteController::loggedInCheck();
+		// SiteController::loggedInCheck();
 
 		//get calendar id from group
-		$groupId = $_POST['groupId'];
-		$group = Group::loadById($groupId);
-		$calendarId = $group->get('calendarId');
+		// $groupId = $_POST['groupId'];
+		$groupId = 1;
 
-		//Get calendarid associated with the group
-		$calendarId =  $_POST['calendarId'];
+		// $group = Group::loadById($groupId);
+		// $calendarId = $group->get('calendarId');
 
 		//retrieve all events
-        $calendar = Calendar::loadById($calendarId);
-        $events = $calendar->getEvents();
-		include_once SYSTEM_PATH.'/view/calendar.tpl';                            //TODO: make sure this is the right tpl
+        // $calendar = Calendar::loadById($calendarId);
+        // $events = $calendar->getEvents();
+		include_once SYSTEM_PATH.'/view/calendar.html';                            //TODO: make sure this is the right tpl
 	}
 
 	/* Opens the form to fill out a new event
