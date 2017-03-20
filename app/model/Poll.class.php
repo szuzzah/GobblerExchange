@@ -103,9 +103,9 @@ class Poll extends DbObject {
     //get all open polls for a group, starting with the most recent
     //**This function can be called from the Group class.
     public function getAllOpenPolls($groupId){
-        $query = sprintf(" SELECT * FROM %s WHERE groupId=%s AND isOpen=true ORDER BY timestamp DESC",
+        $query = sprintf(" SELECT * FROM %s WHERE groupId='%s' AND isOpen='true' ORDER BY timestamp DESC",
             self::DB_TABLE,
-            $forumId
+            $groupId
         );
 
         $db = Db::instance();

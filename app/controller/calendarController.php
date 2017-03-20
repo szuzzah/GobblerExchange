@@ -49,12 +49,12 @@ class CalendarController {
 		// $groupId = $_POST['groupId'];
 		$groupId = 1;
 
-		// $group = Group::loadById($groupId);
-		// $calendarId = $group->get('calendarId');
+		$group = Group::loadById($groupId);
+		$calendarId = $group->get('calendarId');
 
 		//retrieve all events
-        // $calendar = Calendar::loadById($calendarId);
-        // $events = $calendar->getEvents();
+        $calendar = Calendar::loadById($calendarId);
+        $events = $calendar->getEvents();
 		include_once SYSTEM_PATH.'/view/calendar.html';                            //TODO: make sure this is the right tpl
 	}
 

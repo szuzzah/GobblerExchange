@@ -41,6 +41,80 @@
                     </div>
                   </div>
 
+                  <?php
+                  if($posts != null){
+                        foreach($posts as $post){
+                            $title = $post->get('title');
+                            $timestamp = $post->get('timestamp');
+                            $authorId = $post->get('userId');
+                            $description = $post->get('description');
+                            //$ratingId = $post->get('ratingId');
+                            $tag = $post->get('tag');                           //TODO Need somewhere to put tag!
+
+                            //convert SQL timestamp to readable date format
+                            $date = Event::convertToReadableDate($timestamp);
+
+                            //get username of author
+                            $author = User::loadById($authorId);
+                            $authorUsername = $author->get('username');
+
+                            //get rating
+                            //$rating = Rating::loadById($ratingId);
+                            //$score = $rating->get('rating');
+                  ?>
+
+                  <!-- forum post -->
+                  <div class="forum_post">
+                    <!-- <div class="col-lg-2">
+                      <img src="..\images\portrait.png" alt="Portrait" style="width:75px;height:75px;">
+                    </div> -->
+
+                    <div class="row">
+                      <div class="col-lg-10">
+                        <h4><?php echo $title ?></h4>
+                      </div>
+                      <div class="col-lg-2">
+                        <h6><?php echo $date ?></h6>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-1">
+                           <img class="vote_arrows" src="<?= BASE_URL ?>/public/images/down_arrow.png" alt="Down">
+                      </div>
+                      <div class="col-lg-11">
+                        <?php echo $authorUsername ?>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-1">
+                           <img class="vote_arrows" src="<?= BASE_URL ?>/public/images/down_arrow.png" alt="Down">
+                      </div>
+                      <div class="col-lg-11">
+                        <?php echo $description ?>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <p> Tagged under: <i><?php echo $tag ?></i></p>
+                        </div>
+                        <div class="col-lg-3">
+                          <button id = "button" type="button" class="btn btn-primary comments_button">
+                            View Comments
+                          </button>
+                      </div>
+                        <div class="col-lg-1">
+                            <img class="settings_button" src="<?= BASE_URL ?>/public/images/settings.png" alt="Settings">
+                        </div>
+                    </div>
+                  </div>
+                  <!-- end forum post -->
+
+                  <?php }} ?>
+                  <!-- --------------------------------------------------------- -->
 
                   <!-- forum post -->
                   <div class="forum_post" style="padding:10px; border-bottom: 1px solid #ccc;">
