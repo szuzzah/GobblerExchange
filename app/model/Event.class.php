@@ -115,7 +115,7 @@ class Event extends DbObject {
         $start = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day, $year));
         $end = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $day, $year));
 
-        $query = sprintf("SELECT * FROM TABLE WHERE timestamp BETWEEN %s and %s",
+        $query = sprintf("SELECT * FROM %s WHERE timestamp BETWEEN %s and %s",
             self::DB_TABLE,
             $start,
             $end
@@ -137,11 +137,11 @@ class Event extends DbObject {
     // -------------------------------------------------------------------------
 
     //**This function can be called from the Calendar class.
-    public function getAllEventsByCalendar($calendarId){
+    public function getAllEventsByCalendar($id){
 
-        $query = sprintf("SELECT * FROM TABLE WHERE calendarId=%s ",
+        $query = sprintf("SELECT * FROM %s WHERE calendarId=%s ",
             self::DB_TABLE,
-            $calendarId
+            $id
         );
 
         $db = Db::instance();
