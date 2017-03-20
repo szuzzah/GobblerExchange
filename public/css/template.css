@@ -28,12 +28,16 @@ li {
   color: #ff6600;
 }
 
+.title a:hover{
+  text-decoration: none;
+}
+
 #searchBar {
     border-radius: 5px;
     text-indent: 5px;
 }
 
-#searchButton {
+#button {
     background-color: #660000;
 }
 
@@ -56,14 +60,12 @@ li {
 #classTabs a{
     color: white;
     background-color: #660000;
-    margin-left: 25px;
 }
 
 /*turns the class tab orange when hovered over*/
 #classTabs a:hover{
     color: white;
     background-color: #ff6600;
-    margin-left: 25px;
 }
 
 /*turns the class tab orange when clicked*/
@@ -95,4 +97,19 @@ li {
     color: white;
     background-color: #ff6600;
     margin-top: 30px;
+}
+
+
+/* Change color of dropdown links on hover */
+.data-toggle a:active {
+  background-color: #ff6600
+}
+
+#module {
+    width: 100%;
+}
+
+#chat {
+    width:100%;
+    height:300px;
 }
