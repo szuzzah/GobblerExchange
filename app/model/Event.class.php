@@ -47,14 +47,19 @@ class Event extends DbObject {
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
 
-    //SQL formatted date/time
-    public function getSQLTimestamp(){
-        date("Y-m-d H:i:s", $this->timestamp);
-    }
+    // //SQL formatted date/time
+    // public function getSQLTimestamp(){
+    //     date("Y-m-d H:i:s", $this->timestamp);
+    // }
+    //
+    // //getter for date in readable format, for example: 3 15 2017
+    // public function getDate(){
+    //     return date("m d Y", $this->timestamp);
+    // }
 
-    //getter for date in readable format, for example: 3 15 2017
-    public function getDate(){
-        return date("m d Y", $this->timestamp);
+    //converts sql date to readable date
+    public function convertToReadableDate($timestamp){
+        return date("m/d/Y", strtotime($timestamp));
     }
 
     //converts readable format for date (m d Y) and time (H:i) into SQl datetime
