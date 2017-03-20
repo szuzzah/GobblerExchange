@@ -69,9 +69,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-2" style="text-align: center;">
-            <button id = "button" type="button" class="btn btn-primary">
+          <form method="POST" action="<?= BASE_URL ?>/jsontable">
+            <button id = "button" type="submit" class="btn btn-primary">
                 New Class
             </button>
+          </form>
         </div>
         <div class="col-lg-8">
             <ul class="nav nav-tabs">

@@ -59,11 +59,14 @@ class SiteController {
 			case 'logout':
 				$this->logout();
 				break;
+			case 'jsontable':
+				$this->jsontable();
+				break;
 		}
 	}
 
     public function home() {
-																											//TODO uncomment logincheck once login page complete
+																//TODO uncomment logincheck once login page complete
 		// self::loggedInCheck();
 
 		//Get forumid associated with the current crn
@@ -356,5 +359,16 @@ class SiteController {
 
 		// redirect to home page
 		header('Location: '.BASE_URL);
+	}
+
+	public function jsontable(){
+		// header('Content-Type: application/json');
+		$cmd = "generate-classes-json.rb";
+		echo exec("ruby ".$cmd);
+		echo system($cmd);
+		echo $cmd;
+		// echo "test";
+		// redirect to home page
+		// header('Location: '.BASE_URL);
 	}
 }
