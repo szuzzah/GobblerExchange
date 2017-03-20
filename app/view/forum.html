@@ -64,35 +64,51 @@
                   ?>
 
                   <!-- forum post -->
-                  <div class="forum_post" style="padding:10px; border-bottom: 1px solid #ccc;">
+                  <div class="forum_post">
                     <!-- <div class="col-lg-2">
                       <img src="..\images\portrait.png" alt="Portrait" style="width:75px;height:75px;">
                     </div> -->
+
                     <div class="row">
-                      <div class="col-lg-5">
+                      <div class="col-lg-10">
                         <h4><?php echo $title ?></h4>
                       </div>
-                      <div class="col-lg-2" style="float: right;">
+                      <div class="col-lg-2">
                         <h6><?php echo $date ?></h6>
                       </div>
                     </div>
+
                     <div class="row">
-                      <img src="<?= BASE_URL ?>/public/images/up_arrow.png" alt="Up" style="width:30px;height:30px; float: left;">
-                      <div class="col-lg-9">
-                        <h5><?php echo $authorUsername ?></h5>
+                      <div class="col-lg-1">
+                           <img class="vote_arrows" src="<?= BASE_URL ?>/public/images/down_arrow.png" alt="Down">
+                      </div>
+                      <div class="col-lg-11">
+                        <?php echo $authorUsername ?>
                       </div>
                     </div>
+
                     <div class="row">
-                      <img src="<?= BASE_URL ?>/public/images/down_arrow.png" alt="Down" style="width:30px;height:30px; float: left;">
-                      <div class="col-lg-9">
+                      <div class="col-lg-1">
+                           <img class="vote_arrows" src="<?= BASE_URL ?>/public/images/down_arrow.png" alt="Down">
+                      </div>
+                      <div class="col-lg-11">
                         <?php echo $description ?>
                       </div>
                     </div>
+
+
                     <div class="row">
-                      <img src="<?= BASE_URL ?>/public/images/settings.png" alt="Settings" style="width:40px;height:30px; float: right; padding-left:10px;">
-                      <button id = "button" type="button" class="btn btn-primary" style="float: right;">
-                        View Comments
-                      </button>
+                        <div class="col-lg-8">
+                            <p> Tagged under: <i><?php echo $tag ?></i></p>
+                        </div>
+                        <div class="col-lg-3">
+                          <button id = "button" type="button" class="btn btn-primary comments_button">
+                            View Comments
+                          </button>
+                      </div>
+                        <div class="col-lg-1">
+                            <img class="settings_button" src="<?= BASE_URL ?>/public/images/settings.png" alt="Settings">
+                        </div>
                     </div>
                   </div>
                   <!-- end forum post -->
