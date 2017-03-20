@@ -95,6 +95,22 @@
 
                 <!-- Main space -->
                 <div id="module">
+                  <div>
+                    <button id = "addEvent" type="button" class="btn btn-primary" style="float: right;">
+                    Add Event
+                    </button>
+                  </div>
+                  <div id = "filter" class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter by <span class="caret"><span>
+                    </button>
+                    <ul id = "filterdd" class="dropdown-menu" role = "menu">
+                      <li><a href="#">Notes</a></li>
+                      <li><a href="#">Quizzes/Tests</a></li>
+                      <li><a href="#">Events</a></li>
+                      <li><a href="#">Homework</a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
                   <div class="form-group">
                     <label for="exampleSelect1">Month</label>
                     <select id = "month" class="form-control" id="exampleSelect1">
